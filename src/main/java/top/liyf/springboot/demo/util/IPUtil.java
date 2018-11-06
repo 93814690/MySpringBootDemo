@@ -8,7 +8,7 @@ import java.util.Enumeration;
 /**
  * @author liyf
  * @description IP工具类
- * @date Created in 2018\11\6 0006
+ * @date Created in 2018\11\6
  */
 public class IPUtil {
 
@@ -27,7 +27,7 @@ public class IPUtil {
                     if (ip instanceof Inet4Address
                             && !ip.isLoopbackAddress() //loopback地址即本机地址，IPv4的loopback范围是127.0.0.0 ~ 127.255.255.255
                             && !ip.getHostAddress().contains(":")) {
-                        System.out.println("本机的IP = " + ip.getHostAddress());
+                        //System.out.println("本机的IP = " + ip.getHostAddress());
                         return ip.getHostAddress();
                     }
                 }
