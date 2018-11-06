@@ -1,8 +1,9 @@
 spring:
+    profiles:
+      # 多个之间用逗号分隔
+      active: dev
+
     datasource:
-      url: jdbc:mysql://localhost:3306/springbootdemo
-      username: root
-      password: 123456
       driver-class-name: com.mysql.jdbc.Driver
 
       druid:
@@ -27,8 +28,3 @@ spring:
     thymeleaf:
        cache: false
        mode: LEGACYHTML5
-
-#暴露所有端口
-management:
-  security:
-    enabled: false

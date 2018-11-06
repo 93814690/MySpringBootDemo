@@ -1,0 +1,10 @@
+spring:
+    datasource:
+      url: jdbc:mysql://localhost:3306/springbootdemo
+      username: root
+      password: 123456
+
+#暴露所有端口
+management:
+  security:
+    enabled: false
