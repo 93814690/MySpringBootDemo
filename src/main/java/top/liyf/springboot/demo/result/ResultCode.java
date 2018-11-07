@@ -27,6 +27,9 @@ public enum ResultCode {
     /** 太频繁的调用 */
     TOO_FREQUENT(405, "太频繁的调用"),
 
+    /** 上传失败 */
+    UPLOAD_FAIL(406, "上传失败"),
+
     /** 发生异常 */
     EXCEPTION(502, "发生异常"),
 
