@@ -1,5 +1,6 @@
 package top.liyf.springboot.demo.aop;
 
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import top.liyf.springboot.demo.result.ResultBean;
+import top.liyf.springboot.demo.result.ResultCode;
 
 /**
  * @author liyf
@@ -25,7 +27,8 @@ public class ResultBeanAOP {
     private static final Logger logger = LoggerFactory.getLogger(ResultBeanAOP.class);
 
     @Pointcut("execution(public top.liyf.springboot.demo.result.ResultBean *(..))")
-    public void pointcut() {}
+    public void pointcut() {
+    }
 
     @Around("pointcut()")
     public Object handlerControllerMethod(ProceedingJoinPoint joinPoint) {
@@ -43,21 +46,16 @@ public class ResultBeanAOP {
     }
 
     private ResultBean<?> handlerException(ProceedingJoinPoint joinPoint, Throwable e) {
-        ResultBean<?> result = new ResultBean(e);
 
         // 已知异常
-//        if (e instanceof CheckException) {
-//            result.setMsg(e.getLocalizedMessage());
-//            result.setCode(ResultBean.FAIL);
-//        } else if (e instanceof UnloginException) {
-//            result.setMsg("Unlogin");
-//            result.setCode(ResultBean.NO_LOGIN);
-//        } else {
+//        if (e instanceof FileUploadBase.FileSizeLimitExceededException) {
+//            logger.error("上传失败，文件过大");
+//            return new ResultBean<>(ResultCode.UPLOAD_FAIL, "文件过大");
+//        }
+
         logger.error(joinPoint.getSignature() + " error ", e);
         // 未知的异常，应该格外注意，可以发送邮件通知等
 
-//        }
-
-        return result;
+        return new ResultBean<>(e);
     }
 }
