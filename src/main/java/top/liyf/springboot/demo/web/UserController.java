@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.liyf.springboot.demo.beans.ResultBean;
+import top.liyf.springboot.demo.result.ResultBean;
 import top.liyf.springboot.demo.entity.User;
 import top.liyf.springboot.demo.service.UserService;
 

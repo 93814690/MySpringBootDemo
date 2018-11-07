@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import top.liyf.springboot.demo.beans.ResultBean;
+import top.liyf.springboot.demo.result.ResultBean;
 
 /**
  * @author liyf
@@ -24,7 +24,7 @@ public class ResultBeanAOP {
 
     private static final Logger logger = LoggerFactory.getLogger(ResultBeanAOP.class);
 
-    @Pointcut("execution(public top.liyf.springboot.demo.beans.ResultBean *(..))")
+    @Pointcut("execution(public top.liyf.springboot.demo.result.ResultBean *(..))")
     public void pointcut() {}
 
     @Around("pointcut()")
@@ -43,7 +43,7 @@ public class ResultBeanAOP {
     }
 
     private ResultBean<?> handlerException(ProceedingJoinPoint joinPoint, Throwable e) {
-        ResultBean<?> result = new ResultBean();
+        ResultBean<?> result = new ResultBean(e);
 
         // 已知异常
 //        if (e instanceof CheckException) {
@@ -55,8 +55,7 @@ public class ResultBeanAOP {
 //        } else {
         logger.error(joinPoint.getSignature() + " error ", e);
         // 未知的异常，应该格外注意，可以发送邮件通知等
-        result.setMsg(e.toString());
-        result.setCode(ResultBean.FAIL);
+
 //        }
 
         return result;

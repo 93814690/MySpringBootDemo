@@ -2,7 +2,7 @@ package top.liyf.springboot.demo.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.liyf.springboot.demo.beans.ResultBean;
+import top.liyf.springboot.demo.result.ResultBean;
 
 /**
  * @description

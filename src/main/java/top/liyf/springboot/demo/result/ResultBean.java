@@ -1,4 +1,4 @@
-package top.liyf.springboot.demo.beans;
+package top.liyf.springboot.demo.result;
 
 import lombok.Data;
 
@@ -14,18 +14,8 @@ public class ResultBean<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final int NO_LOGIN = -1;
-
-    public static final int SUCCESS = 0;
-
-    public static final int FAIL = 1;
-
-    public static final int NO_PERMISSION = 2;
-
-    private String msg = "success";
-
-    private int code = SUCCESS;
-
+    private int code = 200;
+    private String msg = "成功";
     private T data;
 
     public ResultBean() {
@@ -37,9 +27,21 @@ public class ResultBean<T> implements Serializable {
         this.data = data;
     }
 
+    public ResultBean(ResultCode code) {
+        super();
+        this.code = code.val();
+        this.msg = code.msg();
+    }
+
+    public ResultBean(ResultCode code, String msg) {
+        super();
+        this.code = code.val();
+        this.msg = msg;
+    }
+
     public ResultBean(Throwable e) {
         super();
         this.msg = e.toString();
-        this.code = FAIL;
+        this.code = ResultCode.EXCEPTION.val();
     }
 }
