@@ -2,6 +2,7 @@ package top.liyf.springboot.demo.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.liyf.springboot.demo.result.ResultBean;
@@ -29,5 +30,10 @@ public class UserController {
         User user = new User();
         user.setUsername("张三");
         return new ResultBean<>(userService.saveUser(user));
+    }
+
+    @GetMapping("/{uid}/getInfo")
+    public ResultBean<User> getUserInfo(@PathVariable("uid") Long uid) {
+        return new ResultBean<>(userService.getUser(uid));
     }
 }
