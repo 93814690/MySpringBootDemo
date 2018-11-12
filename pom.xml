@@ -82,6 +82,12 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- 发送邮件. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!-- 监控和管理生产环境的模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
