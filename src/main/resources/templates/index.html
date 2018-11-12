@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
 <body>
-<h1>index</h1>
+<p><label th:text="#{welcome}"></label></p>
+<p><label th:text="${ht}"></label></p>
+<form action="/changeLanguage" method="get">
+  <input name="lang" type="hidden" value="zh"  />
+  <button>切换为中文</button>
+</form>
 
-<a href="/user/save">userAdd</a><br>
-<a href="/user/7/getInfo">userInfo</a><br>
+
+<form action="/changeLanguage" method="get">
+  <input name="lang" type="hidden" value="en" />
+  <button>切换为英文</button>
+</form>
+
+<hr/>
+<a href="/user/save" th:text="#{addUser}"></a><br>
+<a href="/user/7/getInfo" th:text="#{userInfo}">userInfo</a><br>
 </body>
 </html>
