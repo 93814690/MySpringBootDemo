@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import top.liyf.springboot.demo.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import java.util.Locale;
  * @date Created in 2018\10\22
  */
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
     @Autowired
@@ -31,7 +33,8 @@ public class HomeController {
         Locale locale = LocaleContextHolder.getLocale();
         String msg = messageSource.getMessage("welcome", null, locale);
         model.addAttribute("ht", msg);
-        return "/index";
+        model.addAttribute("user", new User());
+        return "index";
     }
 
     @RequestMapping("/changeLanguage")

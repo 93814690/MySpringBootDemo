@@ -1,21 +1,23 @@
 package top.liyf.springboot.demo.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import top.liyf.springboot.demo.result.ResultBean;
 import top.liyf.springboot.demo.entity.User;
 import top.liyf.springboot.demo.service.UserService;
+
+import javax.validation.Valid;
 
 /**
  * @author liyf
  * @description
  * @date Created in 2018\10\22 0022
  */
-@RestController
-@RequestMapping("/user")
+@Controller
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -25,11 +27,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/save")
-    public ResultBean<User> save() {
-        User user = new User();
-        user.setUsername("张三");
-        return new ResultBean<>(userService.saveUser(user));
+    @PostMapping("/save")
+    public String save(@Valid User user, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "index";
+        }
+        userService.saveUser(user);
+        return "redirect:/";
     }
 
     @GetMapping("/{uid}/getInfo")

@@ -1,6 +1,7 @@
 package top.liyf.springboot.demo.entity;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,9 @@ public class User implements Serializable {
     @Id
     @GeneratedValue
     private Long uid;
+    @NotEmpty(message="姓名不能为空")
     private String username;
+    @NotEmpty(message="密码不能为空")
+    private String password;
 
 }
