@@ -29,7 +29,4 @@ spring:
        cache: false
        mode: LEGACYHTML5
 
-    mail:
-      host: smtp.126.com
-      username: liyftest@126.com
-      password: justtest1
+
