@@ -38,6 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/{uid}/getInfo")
+    @ResponseBody
     public ResultBean<User> getUserInfo(@PathVariable("uid") Long uid) {
         return new ResultBean<>(userService.getUser(uid));
     }

@@ -1,7 +1,7 @@
 spring:
     profiles:
       # 多个之间用逗号分隔
-      active: prod
+      active: dev
 
     datasource:
       driver-class-name: com.mysql.jdbc.Driver
